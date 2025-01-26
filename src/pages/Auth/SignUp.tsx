@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import styles from "./Auth.module.css";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
-const Auth = () => {
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignIn = async (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      alert("Login realizado com sucesso!");
-      navigate("/home"); // Redireciona para a página inicial
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert("Usuário criado com sucesso!");
+      navigate("/"); // Redireciona para a tela de login
     } catch (error) {
       console.error(error);
-      alert("Erro ao fazer login. Verifique os dados.");
+      alert("Erro ao criar usuário. Verifique os dados.");
     }
   };
 
@@ -38,7 +38,7 @@ const Auth = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>Audio</h1>
       <p className={styles.subtitle}>It's modular and designed to last</p>
-      <form onSubmit={handleSignIn} className={styles.form}>
+      <form onSubmit={handleSignUp} className={styles.form}>
         <input
           type="email"
           placeholder="Email"
@@ -53,21 +53,20 @@ const Auth = () => {
           onChange={(e) => setPassword(e.target.value)}
           className={styles.input}
         />
-        <p className={styles.forgotPassword}>Forgot Password</p>
         <button type="submit" className={styles.button}>
-          Sign In
+          Sign Up
         </button>
       </form>
       <button onClick={handleGoogleSignIn} className={styles.googleButton}>
         <FcGoogle size={20} />
-        Sign in with Google
+        Sign up with Google
       </button>
       <p className={styles.footer}>
-        Don't have an account?{" "}
-        <span onClick={() => navigate("/signup")}>Sign Up here</span>
+        If you have an account?{" "}
+        <span onClick={() => navigate("/")}>Sign In here</span>
       </p>
     </div>
   );
 };
 
-export default Auth;
+export default SignUp;

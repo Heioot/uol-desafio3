@@ -1,20 +1,145 @@
-h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
+/* Container principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh; /* Garante que o container ocupe toda a tela */
+  background-image: linear-gradient(
+      rgba(0, 61, 47, 0.6),
+      rgba(0, 61, 47, 0.6)
+    ),
+    url('/src/assets/images/background-auth.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 20px; /* Para evitar bordas coladas na tela */
+  box-sizing: border-box;
+}
+
+/* Título */
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-bottom: 10px;
+}
+
+/* Subtítulo */
+.subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 30px; /* Controla o espaço abaixo */
+}
+
+/* Formulário */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 360px; /* Limita a largura em telas maiores */
+  margin-bottom: 20px;
+}
+
+/* Input */
+.input {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0 15px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000;
+  background-color: #fff;
+}
+
+/* Botão principal */
+.button {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #0acf83;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0fb374;
+}
+
+/* Botão Google */
+.googleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espaço entre o texto e o ícone */
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #ffffff; /* Cor branca */
+  background-color: transparent; /* Remove o fundo */
+  border: none; /* Remove a borda */
+  cursor: pointer;
+  margin-top: 10px; /* Espaçamento acima */
+  text-align: center;
+  text-decoration: none; /* Remove underline */
+}
+
+.googleButton:hover {
+  color: rgba(255, 255, 255, 0.8); /* Efeito hover */
+}
+
+
+/* Texto de 'Forgot Password' */
+.forgotPassword {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+/* Rodapé */
+.footer {
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 20px;
+}
+
+.footer span {
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+  .container {
+    padding: 40px; /* Ajuste para telas maiores */
   }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+
+  .title {
+    font-size: 40px;
+    line-height: 50px;
   }
-  
-  button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
+
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
   }
-  
+}
