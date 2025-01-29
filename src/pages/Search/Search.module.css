@@ -1,0 +1,97 @@
+.container {
+    padding: 20px;
+    font-family: "DM Sans", sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .backButton {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .cartIcon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .searchBar {
+    margin-bottom: 20px;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .searchResults {
+    margin-bottom: 30px;
+  }
+  
+  .sectionTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .popularProducts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  
+  .productCard {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .productImage {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .productName {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .productPrice {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0;
+  }
+  
+  .productReviews {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .starIcon {
+    font-size: 16px;
+    color: #ffc107;
+    margin-right: 5px;
+  }
+  

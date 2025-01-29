@@ -16,11 +16,11 @@
   background-repeat: no-repeat;
   color: #fff;
   text-align: center;
-  padding: 20px; /* Para evitar bordas coladas na tela */
+  padding: 20px;
   box-sizing: border-box;
 }
 
-/* Título */
+
 .title {
   font-size: 32px;
   font-weight: 700;
@@ -28,38 +28,53 @@
   margin-bottom: 10px;
 }
 
-/* Subtítulo */
+
 .subtitle {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  margin-bottom: 30px; /* Controla o espaço abaixo */
+  margin-bottom: 30px;
 }
 
-/* Formulário */
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 15px;
   width: 100%;
-  max-width: 360px; /* Limita a largura em telas maiores */
+  max-width: 360px;
   margin-bottom: 20px;
 }
 
-/* Input */
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+.icon {
+  position: absolute;
+  left: 15px;
+  font-size: 18px;
+  color: gray;
+}
+
+
 .input {
   width: 100%;
   height: 50px;
+  padding: 0 15px 0 40px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 0 15px;
+  border: 1px solid gray;
   font-size: 14px;
   line-height: 20px;
   color: #000;
   background-color: #fff;
 }
 
-/* Botão principal */
+
 .button {
   width: 100%;
   height: 50px;
@@ -78,46 +93,41 @@
   background-color: #0fb374;
 }
 
-/* Botão Google */
+
 .googleButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px; /* Espaço entre o texto e o ícone */
+  gap: 8px;
   font-size: 14px;
   font-weight: 700;
   line-height: 20px;
-  color: #ffffff; /* Cor branca */
-  background-color: transparent; /* Remove o fundo */
-  border: none; /* Remove a borda */
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
-  margin-top: 10px; /* Espaçamento acima */
+  margin-top: 10px;
   text-align: center;
-  text-decoration: none; /* Remove underline */
-}
-
-.googleButton:hover {
-  color: rgba(255, 255, 255, 0.8); /* Efeito hover */
+  text-decoration: none;
 }
 
 
-/* Texto de 'Forgot Password' */
 .forgotPassword {
   font-size: 12px;
   font-weight: 500;
   line-height: 20px;
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
+  color:#fff;
   margin-bottom: 20px;
   cursor: pointer;
 }
 
-/* Rodapé */
+
 .footer {
   font-size: 12px;
   font-weight: 400;
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
+  color: #fff;
   margin-top: 20px;
 }
 
@@ -127,7 +137,7 @@
   cursor: pointer;
 }
 
-/* Responsividade */
+
 @media (min-width: 768px) {
   .container {
     padding: 40px; /* Ajuste para telas maiores */

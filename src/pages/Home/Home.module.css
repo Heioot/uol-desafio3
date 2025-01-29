@@ -1,86 +1,213 @@
 .container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    font-family: "DM Sans", sans-serif;
-  }
-  
-  .header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .logo {
-    font-size: 36px;
-    font-weight: 700;
-    color: #222;
-  }
-  
-  .greeting {
-    font-size: 18px;
-    color: #555;
-    margin-top: 10px;
-  }
-  
-  .title {
-    font-size: 24px;
-    font-weight: 400;
-    color: #333;
-    margin: 20px 0;
-  }
-  
-  .searchInput {
-    width: 100%;
-    max-width: 600px;
-    padding: 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
-  }
-  
-  .categorySection {
-    margin-bottom: 40px;
-  }
-  
-  .categoryHeader h2 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 15px;
-    text-align: left;
-  }
-  
-  .productCard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-  }
-  
-  .productImage {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 15px;
-  }
-  
-  .productName {
-    font-size: 16px;
-    font-weight: 600;
-    color: #222;
-    margin-bottom: 8px;
-  }
-  
-  .productPrice {
-    font-size: 14px;
-    color: #777;
-  }
-  
+  padding: 20px;
+  font-family: "DM Sans", sans-serif;
+  overflow-y: auto; /* Permite scroll vertical */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuIcon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.userPlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ddd;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+}
+
+.greeting {
+  font-size: 16px;
+  color: #666;
+  margin-top: 10px;
+  font-weight: 400;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 15px 0;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.categorySection {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 400;
+  background-color: #f6f6f6;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  border: none;
+  background-color: #f6f6f6 ;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #7F7F7F;
+}
+
+.tab.active {
+  background-color: #0acf83;
+  color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+.highlightedProduct {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.highlightedImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+}
+
+.shopLink {
+  color: #0acf83;
+  font-weight: 700;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Espaço entre o texto e o ícone */
+  text-decoration: none; /* Remove o underline */
+}
+
+.featuredSection {
+  margin-top: 30px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.seeAllButton {
+  font-size: 14px;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.seeAllButton:hover {
+  text-decoration: underline;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.productCard {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+}
+
+.productImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.productName {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.productPrice {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Customização das setas do carrossel */
+.customArrowLeft,
+.customArrowRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.3); /* Transparência */
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.customArrowLeft {
+  left: 10px;
+}
+
+.customArrowRight {
+  right: 10px;
+}
+
+/* Oculta os dots */
+.react-multi-carousel-dot {
+  display: none;
+}

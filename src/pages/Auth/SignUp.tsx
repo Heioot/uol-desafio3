@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { MdEmail, MdLock } from "react-icons/md";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const SignUp = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert("Usuário criado com sucesso!");
-      navigate("/"); // Redireciona para a tela de login
+      navigate("/");
     } catch (error) {
       console.error(error);
       alert("Erro ao criar usuário. Verifique os dados.");
@@ -39,20 +40,26 @@ const SignUp = () => {
       <h1 className={styles.title}>Audio</h1>
       <p className={styles.subtitle}>It's modular and designed to last</p>
       <form onSubmit={handleSignUp} className={styles.form}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={styles.input}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={styles.input}
-        />
+        <div className={styles.inputWrapper}>
+          <MdEmail className={styles.icon} />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.inputWrapper}>
+          <MdLock className={styles.icon} />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+          />
+        </div>
         <button type="submit" className={styles.button}>
           Sign Up
         </button>

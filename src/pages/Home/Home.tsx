@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../services/firebase";
 import styles from "./Home.module.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { FiMenu } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 
 interface Product {
   id: string;
@@ -14,9 +17,13 @@ interface Product {
 
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>("headphones");
+  const [userName, setUserName] = useState<string | null>(null);
+  const [userPhoto, setUserPhoto] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Fetch products from API
     const fetchProducts = async () => {
       try {
         const response = await fetch(
@@ -30,6 +37,13 @@ const Home = () => {
     };
 
     fetchProducts();
+
+    // Fetch user details from Firebase Auth
+    const user = auth.currentUser;
+    if (user) {
+      setUserName(user.displayName);
+      setUserPhoto(user.photoURL);
+    }
   }, []);
 
   const responsive = {
@@ -38,16 +52,79 @@ const Home = () => {
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
 
-  const renderCategoryCarousel = (category: string) => {
-    const filteredProducts = products.filter((product) => product.category === category);
+  const renderHighlightedProduct = () => {
+    const highlightedProduct = products.find(
+      (product) => product.category === activeCategory
+    );
+
+    if (!highlightedProduct) {
+      return <p>No product available</p>;
+    }
 
     return (
-      <Carousel responsive={responsive} infinite={true}>
+      <div className={styles.highlightedProduct}>
+        <img
+          src={highlightedProduct.img}
+          alt={highlightedProduct.name}
+          className={styles.highlightedImage}
+        />
+        <div>
+          <h3>{highlightedProduct.name}</h3>
+          <a href="#shop" className={styles.shopLink}>
+            Shop now <FiArrowRight />
+          </a>
+        </div>
+      </div>
+    );
+  };
+
+  const renderCategoryCarousel = () => {
+    const filteredProducts = products.filter(
+      (product) => product.category === activeCategory
+    );
+
+    return (
+      <Carousel
+        responsive={responsive}
+        infinite={true}
+        arrows={true}
+        showDots={false}
+      >
         {filteredProducts.map((product) => (
           <div key={product.id} className={styles.productCard}>
-            <img src={product.img} alt={product.name} className={styles.productImage} />
+            <img
+              src={product.img}
+              alt={product.name}
+              className={styles.productImage}
+            />
             <h3 className={styles.productName}>{product.name}</h3>
-            <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
+            <p className={styles.productPrice}>USD {product.price.toFixed(2)}</p>
+          </div>
+        ))}
+      </Carousel>
+    );
+  };
+
+  const renderFeaturedProductsCarousel = () => {
+    // Definindo produtos em destaque (featured products)
+    const featuredProducts = products.slice(0, 5); // Pegando os primeiros 5 produtos
+
+    return (
+      <Carousel
+        responsive={responsive}
+        infinite={true}
+        arrows={true}
+        showDots={false}
+      >
+        {featuredProducts.map((product) => (
+          <div key={product.id} className={styles.productCard}>
+            <img
+              src={product.img}
+              alt={product.name}
+              className={styles.productImage}
+            />
+            <h3 className={styles.productName}>{product.name}</h3>
+            <p className={styles.productPrice}>USD {product.price.toFixed(2)}</p>
           </div>
         ))}
       </Carousel>
@@ -57,8 +134,23 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.logo}>Audio</h1>
-        <p className={styles.greeting}>Hi, Andrea</p>
+        <div className={styles.navbar}>
+          <FiMenu className={styles.menuIcon} />
+          <h1 className={styles.logo}>Audio</h1>
+          <div className={styles.userSection}>
+            {userPhoto ? (
+              <img
+                src={userPhoto}
+                alt={userName || "User"}
+                className={styles.userAvatar}
+              />
+            ) : (
+              <div className={styles.userPlaceholder}>?</div>
+            )}
+            {userName && <span className={styles.userName}>{userName}</span>}
+          </div>
+        </div>
+        <p className={styles.greeting}>Hi, {userName || "User"}</p>
         <h2 className={styles.title}>What are you looking for today?</h2>
         <input
           type="text"
@@ -69,17 +161,39 @@ const Home = () => {
       </header>
 
       <section className={styles.categorySection}>
-        <div className={styles.categoryHeader}>
-          <h2>Headphones</h2>
+        <div className={styles.tabs}>
+          <button
+            className={`${styles.tab} ${
+              activeCategory === "headphones" ? styles.active : ""
+            }`}
+            onClick={() => setActiveCategory("headphones")}
+          >
+            Headphone
+          </button>
+          <button
+            className={`${styles.tab} ${
+              activeCategory === "headsets" ? styles.active : ""
+            }`}
+            onClick={() => setActiveCategory("headsets")}
+          >
+            Headset
+          </button>
         </div>
-        {renderCategoryCarousel("headphones")}
+        {renderHighlightedProduct()}
       </section>
 
-      <section className={styles.categorySection}>
-        <div className={styles.categoryHeader}>
-          <h2>Headsets</h2>
+      <section className={styles.featuredSection}>
+        <div className={styles.sectionHeader}>
+          <h2>Products by Category</h2>
         </div>
-        {renderCategoryCarousel("headsets")}
+        {renderCategoryCarousel()}
+      </section>
+
+      <section className={styles.featuredSection}>
+        <div className={styles.sectionHeader}>
+          <h2>Featured Products</h2>
+        </div>
+        {renderFeaturedProductsCarousel()}
       </section>
     </div>
   );
