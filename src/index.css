@@ -11,5 +11,5 @@ html, body {
   font-family: 'DM Sans', sans-serif; /* Fonte padrão do projeto */
   background: none; /* Remova o fundo definido no arquivo original */
   color: inherit;
-  overflow: hidden; /* Remova rolagens desnecessárias */
+  overflow-y: auto;
 }

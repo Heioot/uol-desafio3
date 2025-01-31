@@ -70,7 +70,7 @@ const Auth = () => {
         Sign in with Google
       </button>
       <p className={styles.footer}>
-        Don't have an account?{" "}
+        Didn't have an account?{" "}
         <span onClick={() => navigate("/signup")}>Sign Up here</span>
       </p>
     </div>
