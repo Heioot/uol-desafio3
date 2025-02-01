@@ -23,7 +23,6 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch products from API
     const fetchProducts = async () => {
       try {
         const response = await fetch(
@@ -38,7 +37,6 @@ const Home = () => {
 
     fetchProducts();
 
-    // Fetch user details from Firebase Auth
     const user = auth.currentUser;
     if (user) {
       setUserName(user.displayName);
@@ -52,6 +50,10 @@ const Home = () => {
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
 
+  const handleProductClick = (productId: string) => {
+    navigate(`/product-detail/${productId}`);
+  };
+
   const renderHighlightedProduct = () => {
     const highlightedProduct = products.find(
       (product) => product.category === activeCategory
@@ -62,7 +64,10 @@ const Home = () => {
     }
 
     return (
-      <div className={styles.highlightedProduct}>
+      <div
+        className={styles.highlightedProduct}
+        onClick={() => handleProductClick(highlightedProduct.id)}
+      >
         <img
           src={highlightedProduct.img}
           alt={highlightedProduct.name}
@@ -91,7 +96,11 @@ const Home = () => {
         showDots={false}
       >
         {filteredProducts.map((product) => (
-          <div key={product.id} className={styles.productCard}>
+          <div
+            key={product.id}
+            className={styles.productCard}
+            onClick={() => handleProductClick(product.id)}
+          >
             <img
               src={product.img}
               alt={product.name}
@@ -106,8 +115,7 @@ const Home = () => {
   };
 
   const renderFeaturedProductsCarousel = () => {
-    // Definindo produtos em destaque (featured products)
-    const featuredProducts = products.slice(0, 5); // Pegando os primeiros 5 produtos
+    const featuredProducts = products.slice(0, 5);
 
     return (
       <Carousel
@@ -117,7 +125,11 @@ const Home = () => {
         showDots={false}
       >
         {featuredProducts.map((product) => (
-          <div key={product.id} className={styles.productCard}>
+          <div
+            key={product.id}
+            className={styles.productCard}
+            onClick={() => handleProductClick(product.id)}
+          >
             <img
               src={product.img}
               alt={product.name}
@@ -182,11 +194,13 @@ const Home = () => {
         {renderHighlightedProduct()}
       </section>
 
-      {/* Featured Products acima de Products by Category */}
       <section className={styles.featuredSection}>
         <div className={styles.sectionHeader}>
           <h2>Featured Products</h2>
-          <button className={styles.seeAllButton} onClick={() => navigate("/explore-products")}>
+          <button
+            className={styles.seeAllButton}
+            onClick={() => navigate("/explore-products")}
+          >
             See All
           </button>
         </div>

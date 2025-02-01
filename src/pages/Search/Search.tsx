@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Search.module.css";
-
-// Importação dos ícones
 import { AiFillStar } from "react-icons/ai";
 import { FiArrowLeft, FiShoppingCart } from "react-icons/fi";
 
@@ -23,7 +21,6 @@ const Search = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch products from API
     const fetchProducts = async () => {
       try {
         const response = await fetch(
@@ -40,7 +37,6 @@ const Search = () => {
   }, []);
 
   useEffect(() => {
-    // Filter products by search query
     const filtered = products.filter((product) =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -48,15 +44,19 @@ const Search = () => {
   }, [searchQuery, products]);
 
   const popularProducts = products
-    .sort((a, b) => b.popularity - a.popularity) // Sort by popularity
-    .slice(0, 3); // Take the top 3
+    .sort((a, b) => b.popularity - a.popularity)
+    .slice(0, 3);
+
+  const handleProductClick = (productId: string) => {
+    navigate(`/product-detail/${productId}`);
+  };
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <FiArrowLeft
           className={styles.backButton}
-          onClick={() => navigate("/home")} // Direciona para a página Home
+          onClick={() => navigate("/home")}
         />
         <h1 className={styles.title}>Search</h1>
         <FiShoppingCart className={styles.cartIcon} />
@@ -75,7 +75,11 @@ const Search = () => {
       {searchQuery && (
         <div className={styles.searchResults}>
           {filteredProducts.map((product) => (
-            <div key={product.id} className={styles.productCard}>
+            <div
+              key={product.id}
+              className={styles.productCard}
+              onClick={() => handleProductClick(product.id)}
+            >
               <img
                 src={product.img}
                 alt={product.name}
@@ -97,7 +101,11 @@ const Search = () => {
       <h2 className={styles.sectionTitle}>Popular Products</h2>
       <div className={styles.popularProducts}>
         {popularProducts.map((product) => (
-          <div key={product.id} className={styles.productCard}>
+          <div
+            key={product.id}
+            className={styles.productCard}
+            onClick={() => handleProductClick(product.id)}
+          >
             <img
               src={product.img}
               alt={product.name}
