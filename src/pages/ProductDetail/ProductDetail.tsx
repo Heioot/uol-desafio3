@@ -49,7 +49,6 @@ const ProductDetail = () => {
         if (selectedProduct) {
           setProduct(selectedProduct);
 
-          // Filtra os produtos relacionados com base na mesma categoria
           const related = data.filter(
             (item) => item.category === selectedProduct.category && item.id !== id
           );
@@ -95,7 +94,6 @@ const ProductDetail = () => {
           className={styles.backButton}
           onClick={() => navigate(-1)}
         />
-        <h1 className={styles.title}>Product Detail</h1>
         <BsCart
           className={styles.cartIcon}
           onClick={() => navigate("/cart")}
@@ -128,7 +126,9 @@ const ProductDetail = () => {
                 {Array.from({ length: 5 }, (_, i) => (
                   <AiFillStar
                     key={i}
-                    className={i < review.rating ? styles.starFilled : styles.starEmpty}
+                    className={
+                      i < review.rating ? styles.starFilled : styles.starEmpty
+                    }
                   />
                 ))}
               </div>
@@ -147,23 +147,25 @@ const ProductDetail = () => {
             See All
           </button>
         </div>
-        <Carousel responsive={responsive} infinite arrows>
-          {relatedProducts.map((related) => (
-            <div
-              key={related.id}
-              className={styles.productCard}
-              onClick={() => navigate(`/product-detail/${related.id}`)}
-            >
-              <img
-                src={related.img}
-                alt={related.name}
-                className={styles.productCardImage}
-              />
-              <h4 className={styles.productCardName}>{related.name}</h4>
-              <p className={styles.productCardPrice}>USD {related.price}</p>
-            </div>
-          ))}
-        </Carousel>
+        <div className={styles.carouselWrapper}>
+          <Carousel responsive={responsive} infinite arrows>
+            {relatedProducts.map((related) => (
+              <div
+                key={related.id}
+                className={styles.productCard}
+                onClick={() => navigate(`/product-detail/${related.id}`)}
+              >
+                <img
+                  src={related.img}
+                  alt={related.name}
+                  className={styles.productCardImage}
+                />
+                <h4 className={styles.productCardName}>{related.name}</h4>
+                <p className={styles.productCardPrice}>USD {related.price}</p>
+              </div>
+            ))}
+          </Carousel>
+        </div>
       </div>
 
       <button className={styles.addToCartButton} onClick={addToCart}>
