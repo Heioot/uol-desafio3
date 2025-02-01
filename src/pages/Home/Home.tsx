@@ -182,18 +182,22 @@ const Home = () => {
         {renderHighlightedProduct()}
       </section>
 
+      {/* Featured Products acima de Products by Category */}
+      <section className={styles.featuredSection}>
+        <div className={styles.sectionHeader}>
+          <h2>Featured Products</h2>
+          <button className={styles.seeAllButton} onClick={() => navigate("/explore-products")}>
+            See All
+          </button>
+        </div>
+        {renderFeaturedProductsCarousel()}
+      </section>
+
       <section className={styles.featuredSection}>
         <div className={styles.sectionHeader}>
           <h2>Products by Category</h2>
         </div>
         {renderCategoryCarousel()}
-      </section>
-
-      <section className={styles.featuredSection}>
-        <div className={styles.sectionHeader}>
-          <h2>Featured Products</h2>
-        </div>
-        {renderFeaturedProductsCarousel()}
       </section>
     </div>
   );

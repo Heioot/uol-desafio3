@@ -4,6 +4,7 @@ import Auth from "../pages/Auth/Auth";
 import SignUp from "../pages/Auth/SignUp";
 import Home from "../pages/Home/Home";
 import Search from "../pages/Search/Search"
+import ExploreProducts from "../pages/ExploreProducts/ExploreProducts";
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/explore-products" element={<ExploreProducts />} />
       </Routes>
     </Router>
   );
