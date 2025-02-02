@@ -125,8 +125,8 @@
   margin-top: 10px;
   display: flex;
   align-items: center;
-  gap: 5px; /* Espaço entre o texto e o ícone */
-  text-decoration: none; /* Remove o underline */
+  gap: 5px;
+  text-decoration: none;
 }
 
 .featuredSection {
@@ -183,7 +183,7 @@
   color: #777;
 }
 
-/* Customização das setas do carrossel */
+/* Setas do carrossel */
 .customArrowLeft,
 .customArrowRight {
   position: absolute;
@@ -212,23 +212,45 @@
   display: none;
 }
 
-
-.sectionHeader {
+.menuDrawer {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100%;
+  background: #f6f6f6;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
+  flex-direction: column;
+  padding: 20px;
+  transition: left 0.3s ease;
 }
 
-.seeAllButton {
-  font-size: 14px;
-  color: #7F7F7F;
-  background: none;
-  border: none;
+.menuDrawerOpen {
+  left: 0;
+}
+
+.closeMenuIcon {
+  font-size: 30px;
+  color: #333;
+  align-self: flex-end;
   cursor: pointer;
-  font-weight: bold;
 }
 
-.seeAllButton:hover {
-  text-decoration: underline;
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.menuList li {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.menuList li:hover {
+  color: #0acf83;
 }

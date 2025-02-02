@@ -6,6 +6,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FiMenu } from "react-icons/fi";
 import { FiArrowRight } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
 
 interface Product {
   id: string;
@@ -20,6 +21,7 @@ const Home = () => {
   const [activeCategory, setActiveCategory] = useState<string>("headphones");
   const [userName, setUserName] = useState<string | null>(null);
   const [userPhoto, setUserPhoto] = useState<string | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,6 +45,13 @@ const Home = () => {
       setUserPhoto(user.photoURL);
     }
   }, []);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleNavigation = (path: string) => {
+    setIsMenuOpen(false);
+    navigate(path);
+  };
 
   const responsive = {
     desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3 },
@@ -147,7 +156,7 @@ const Home = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.navbar}>
-          <FiMenu className={styles.menuIcon} />
+          <FiMenu className={styles.menuIcon} onClick={toggleMenu} />
           <h1 className={styles.logo}>Audio</h1>
           <div className={styles.userSection}>
             {userPhoto ? (
@@ -162,15 +171,33 @@ const Home = () => {
             {userName && <span className={styles.userName}>{userName}</span>}
           </div>
         </div>
-        <p className={styles.greeting}>Hi, {userName || "User"}</p>
-        <h2 className={styles.title}>What are you looking for today?</h2>
-        <input
-          type="text"
-          placeholder="Search headphone"
-          className={styles.searchInput}
-          onClick={() => navigate("/search")}
-        />
       </header>
+
+      <div
+        className={`${styles.menuDrawer} ${
+          isMenuOpen ? styles.menuDrawerOpen : ""
+        }`}
+      >
+        <IoClose className={styles.closeMenuIcon} onClick={toggleMenu} />
+        <ul className={styles.menuList}>
+          <li onClick={() => handleNavigation("/")}>Auth</li>
+          <li onClick={() => handleNavigation("/signup")}>Sign Up</li>
+          <li onClick={() => handleNavigation("/home")}>Home</li>
+          <li onClick={() => handleNavigation("/search")}>Search</li>
+          <li onClick={() => handleNavigation("/explore-products")}>
+            Explore Products
+          </li>
+        </ul>
+      </div>
+
+      <p className={styles.greeting}>Hi, {userName || "User"}</p>
+      <h2 className={styles.title}>What are you looking for today?</h2>
+      <input
+        type="text"
+        placeholder="Search headphone"
+        className={styles.searchInput}
+        onClick={() => navigate("/search")}
+      />
 
       <section className={styles.categorySection}>
         <div className={styles.tabs}>
@@ -197,12 +224,6 @@ const Home = () => {
       <section className={styles.featuredSection}>
         <div className={styles.sectionHeader}>
           <h2>Featured Products</h2>
-          <button
-            className={styles.seeAllButton}
-            onClick={() => navigate("/explore-products")}
-          >
-            See All
-          </button>
         </div>
         {renderFeaturedProductsCarousel()}
       </section>

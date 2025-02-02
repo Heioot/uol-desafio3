@@ -129,11 +129,11 @@
 
 .filterButtonsRow {
   display: flex;
-  justify-content: center; /* Centraliza os botões */
+  justify-content: center;
   flex-wrap: wrap; /* Permite que os botões quebrem linha se necessário */
-  gap: 15px; /* Espaço entre os botões */
-  max-width: 600px; /* Limita a largura máxima das linhas de botões */
-  margin: 0 auto; /* Centraliza horizontalmente em telas grandes */
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .filterButton {
@@ -162,7 +162,7 @@
   margin-top: 10px;
   width: 100%;
   max-width: 200px; /* Limita a largura máxima */
-  margin: 0 auto; /* Centraliza o botão Apply Filter */
+  margin: 0 auto;
 }
 
 .applyButton:hover {
