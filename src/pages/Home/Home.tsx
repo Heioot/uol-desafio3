@@ -224,6 +224,7 @@ const Home = () => {
       <section className={styles.featuredSection}>
         <div className={styles.sectionHeader}>
           <h2>Featured Products</h2>
+           <button className={styles.seeAllButton} onClick={() => navigate("/explore-products")}>See all</button>
         </div>
         {renderFeaturedProductsCarousel()}
       </section>

@@ -254,3 +254,16 @@
 .menuList li:hover {
   color: #0acf83;
 }
+
+
+.seeAllButton {
+  color: #7F7F7F;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  margin-left: auto; /* Empurra o botão para a direita */
+
+}
